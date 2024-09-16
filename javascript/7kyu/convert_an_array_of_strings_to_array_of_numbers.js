@@ -5,6 +5,7 @@ function toNumberArray(stringarray){
                              }
     return numberArray
   }
+  
   /*Oh no!
 Some really funny web dev gave you a sequence of numbers from his API response as an sequence of strings!
 
