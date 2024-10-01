@@ -1,3 +1,4 @@
+<h1 align="center">Hi 👋, I'm James Allen Jahner the 3rd</h1>
 <h3 align="center">A enthusiastic full stack engineer of the USA</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=jamesallenjahner3rd&label=Profile%20views&color=0e75b6&style=flat" alt="jamesallenjahner3rd" /> </p>
