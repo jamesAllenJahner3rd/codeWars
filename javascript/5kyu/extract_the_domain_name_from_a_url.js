@@ -10,7 +10,7 @@ function domainName(url){
     }
     let urlArray = url.split('.')
     return urlArray[0]
-  }/*
+  }/* 
   PREP
   PARAMETER  A URL AS A STRING 
   RETURN A DOMAIN NAME AS A STRING
