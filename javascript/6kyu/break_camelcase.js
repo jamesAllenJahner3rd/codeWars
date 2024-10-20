@@ -77,6 +77,6 @@ function solution(string) {
       
       function solution(string) {
         const output = new Wordinator(string);
-        return output.findCap
+        return output.findCap()
       }
         */
