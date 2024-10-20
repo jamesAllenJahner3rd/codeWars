@@ -35,7 +35,7 @@ function solution(string) {
   i need a method to find the caps
     then break up the word checking check letter if they were equal to their uppercase counterparts.
     then return a new corrected string.
-  */
+  *//*
     class CharacterHandler {
         handle(character) {
           return character;
@@ -79,3 +79,4 @@ function solution(string) {
         const output = new Wordinator(string);
         return output.findCap
       }
+        */
