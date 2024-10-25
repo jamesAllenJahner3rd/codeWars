@@ -51,8 +51,28 @@ Output: 0
     return jewelFinder.compare();
   };
 
-  // A class to find all the jewels in the pile of stones.
-  class JewelFinder {
+// a class to find all the jewels in the pile of stones.
+class JewelFinder{
+    constructor(input,stones){
+       this._jewelCounts = new Set(input)
+       this._stones =stones
+       this._output = 0
+    }
+   
+    //test and count each jewel 
+    countJewelsInStones() {
+        for (const stone of this._stones) {
+            this._jewelCounts.has(stone) && ( this._output += 1);
+        }
+    }
+    
+    //run the methods. return the output
+    compare(){      
+        this.countJewelsInStones()
+        return this._output
+    }
+}
+  /*class JewelFinder {
     constructor(jewels, stones) {
       this._jewels = jewels;
       this._jewelCounts = {};
@@ -94,5 +114,5 @@ Output: 0
       return this._totalJewels;
     }
   }
-
+*/
 //score %5
