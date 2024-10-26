@@ -30,3 +30,41 @@ function fizzbuzz( num){
         
     }
 }
+
+
+var fizzBuzz = function(n) {
+
+    let aArray = Array.from({ length: n }, (v, i) => i + 1);
+     return aArray.map((e) => {
+        let fizz ='';
+        let buzz ='';
+        (e % 3 == 0) && (fizz = 'Fizz');
+        (e % 5 == 0) && (buzz = 'Buzz');
+       return `${fizz}${buzz}`||`${e}`
+    })
+};
+
+/**
+var fizzBuzz = function(n) {
+
+    let output =[]
+     for(let i=1; i<=n; i++){
+        console.log( i, n, (i%3==0 ),( i%5 == 0),output )
+        if(i%3==0 && i%5 == 0){
+            output.push('FizzBuzz')
+        }else{
+            if(i%3 == 0){
+                  output.push("Fizz")
+            }
+            if(i%5 == 0){
+                output.push("Buzz")
+            }
+            if(i%3!=0 && i%5 != 0){
+                output.push(i.toString())
+                }
+        }
+
+    }
+    return output
+};
+ */
