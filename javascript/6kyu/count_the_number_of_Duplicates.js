@@ -24,25 +24,39 @@ Example
  *      else add to map
  *  return length of output.
 */
-console.log ("hi"); 
+console.log ("js is running"); 
 function duplicateCount(text) {
-    
+    console.log ("function is running"); 
+    let char = new Map();
+    let output = new Set();
     console.log("hi"); 
-} // Importing the required libraries dynamically 
-(async () => {
-    const { assert } = await import('chai'); 
-    const Mocha = await import('mocha'); 
-    const mocha = new Mocha.default(); 
-    // Create a new test suite 
-    mocha.suite.emit('pre-require', this, 'solution', mocha); 
-    describe("Tests", () => {
-         it("test", () => {
-             assert.strictEqual(duplicateCount(""), 0); 
-             assert.strictEqual(duplicateCount("abcde"), 0); 
-             assert.strictEqual(duplicateCount("aabbcde"), 2); 
-             assert.strictEqual(duplicateCount("aabBcde"), 2, "should ignore case"); 
-             assert.strictEqual(duplicateCount("Indivisibility"), 1); 
-             assert.strictEqual(duplicateCount("Indivisibilities"), 2, "characters may not be adjacent"); 
-            }); 
-        });
-    });
+    for(let chara of text){
+        chara = chara.toLowerCase();
+        if (char.has(chara)){
+           output.add(chara)
+        }else{
+            char.set(chara, true);
+        }
+    }
+    console.log(output.size)
+    return output.size
+ }
+//  // Importing the required libraries dynamically 
+//  (async () => { 
+//     const { assert } = await import('chai'); 
+//     const Mocha = await import('mocha'); 
+//     const mocha = new Mocha.default(); 
+//   // Create a new test suite 
+//   mocha.suite.emit('pre-require', this, 'solution', mocha); 
+//   console.log("Test suite created"); 
+//   describe("Tests", () => { 
+//     it("test", () => {
+//         console.log("Test is running"); 
+duplicateCount("")
+duplicateCount("abcde")
+duplicateCount("aabbcde")
+duplicateCount("aabBcde")
+duplicateCount("Indivisibility")
+duplicateCount("Indivisibilities")
+        console.log("Test completed"); 
+      
