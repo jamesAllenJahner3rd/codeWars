@@ -1,10 +1,12 @@
 function inAscOrder(arr) {
-    sorted = [...arr]
-   console.log(arr,sorted)
+    console.log(arr)
+    let stringArr = arr.join('')
+     console.log(arr,stringArr, [...arr])
+   let stringSortedArr = [...arr].sort((a,b)=> a-b).join('')
+   console.log(stringArr,stringSortedArr)
    
-  sorted.sort((a,b)=> a-b)
-    console.log(arr,sorted)
-   return arr === sorted ? true:false
+ 
+   return stringArr === stringSortedArr ? true:false
  }
  /*Are the numbers in order?
  In this Kata, your function receives an array of integers as input.
@@ -32,5 +34,10 @@ function inAscOrder(arr) {
  1,2,3,4 > true
  4,3,2,1 > false 
  3,2,5,3 > false
+ arrays are pointers of arr = arr2 would have to be pointing to the same memory location.
+ Turn arr to a stringArr
+ Then sort arr 
+  then turn sortedArr to a string,
+  if stringArr equals stringSortedArr then return true else return false.
  
  */
