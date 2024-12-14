@@ -1,4 +1,49 @@
-const  vm =(version ='0.0.1',oldVersions =[])=>{
+class VersionMimic{
+    constructor(major,minor,patch){
+     
+      this.major  = major
+      this.minor  = minor
+      this.patch  = patch
+    }
+    major(major,minor,patch){
+     console.log('minor',major,minor,patch)
+      major += 1
+     minor = 0
+      patch = 0
+      return vm([major,minor,patch].join('.'))
+    }
+    minor(major,minor,patch){
+      console.log('minor',major,minor,patch)
+      
+     minor += 1
+      patch = 0
+      return vm([major,minor,patch].join('.'))
+    }
+     patch(major,minor,patch){
+       patch += 1
+       console.log('patch')
+      return vm([major,minor,patch].join('.'))
+    }
+     rollback(major,minor,patch){
+       console.log('rollback')
+      return vm([major,minor,patch].join('.'))
+    }
+     release(major,minor,patch){
+       console.log('release',major,minor,patch)
+      return [major,minor,patch].join('.')
+    }
+  }
+  function vm(versionInput ="0.0.1"){
+    versionInput= versionInput||'0.0.1'
+    console.log(versionInput)
+    let versionArray = versionInput.split('.')
+    console.log(versionArray)
+    return new VersionMimic(versionArray[0],versionArray[1],versionArray[2])
+  }  
+   vm("1.2.3.4").major().patch().rollback()
+  /* 
+ 
+/*const  vm =(version ='0.0.1',oldVersions =[])=>{
     console.log("version:",version) 
    if (version === ''){version ='0.0.1'}
 //  console.log("started:",oldVersions)  
@@ -32,7 +77,7 @@ const  vm =(version ='0.0.1',oldVersions =[])=>{
              }
           // console.log("hint:",history)
             version = [versionArray[0]||0,versionArray[1]||0,versionArray[2]||0].join('.')
-           },*/
+           },
        major(){
           // this.hint(version);
          //  console.log("major:",history)
@@ -76,18 +121,11 @@ const  vm =(version ='0.0.1',oldVersions =[])=>{
        //  this.hint(version)
          console.log("release:",version)
            return  version;
-       } //*return the MAJOR, MINOR, and PATCH to their values before the previous major/minor/patch call, or throw an exception with the message "Cannot rollback!" if there's no version to roll back to. Multiple calls to rollback() should be possible and restore the version history*/
+       } return the MAJOR, MINOR, and PATCH to their values before the previous major/minor/patch call, or throw an exception with the message "Cannot rollback!" if there's no version to roll back to. Multiple calls to rollback() should be possible and restore the version history
   }    
-} 
-//   class VersioningClass{
-//     constructor(version){
-//         this.version = version;
-//     }
-//     start(){
-       
-//     }
+} */
 
-  vm("1.2.3.4").major().patch().rollback()
+
 /*
 parameter a number formated  "{MAJOR}.{MINOR}.{PATCH}" where minor and patch are optional
 return object, if format is incorrect  return "Error occured while parsing version!"
@@ -117,3 +155,79 @@ patch() - increase PATCH by 1
 rollback() - return the MAJOR, MINOR, and PATCH to their values before the previous major/minor/patch call, or throw an exception with the message "Cannot rollback!" if there's no version to roll back to. Multiple calls to rollback() should be possible and restore the version history
 release() - return a string in the format "{MAJOR}.{MINOR}.{PATCH}"
 May the binary force be with you!*/
+/**
+class VM {
+    constructor(major, minor, patch) {
+        this.rollbackVersions = [];
+        this.version = { major, minor, patch };
+    }
+
+    major() {
+        this.updateRollbackVersion();
+        this.version.major += 1;
+        this.version.minor = 0;
+        this.version.patch = 0;
+        return this;
+    }
+
+    minor() {
+        this.updateRollbackVersion();
+        this.version.minor += 1;
+        this.version.patch = 0;
+        return this;
+    }
+
+    patch() {
+        this.handleDefaultPatch();
+        this.updateRollbackVersion();
+        this.version.patch += 1;
+        return this;
+    }
+
+    rollback() {
+        if (this.rollbackVersions.length === 0)
+            throw new Error('Cannot rollback!');
+        this.version = this.rollbackVersions[this.rollbackVersions.length - 1];
+        this.rollbackVersions.pop();
+        return this;
+    }
+
+    release() {
+        this.handleDefaultPatch();
+        const { major, minor, patch } = this.version;
+        return [major, minor, patch].join('.');
+    }
+
+    // handle default value for patch
+    handleDefaultPatch() {
+        if (
+            this.version.major === 0 &&
+            this.version.minor === 0 &&
+            this.version.patch === 0
+        ) {
+            this.version.patch = 1;
+        }
+    }
+
+    updateRollbackVersion() {
+        const { major, minor, patch } = this.version;
+        this.rollbackVersions.push({ major, minor, patch });
+    }
+}
+
+const vm = (version = '') => {
+    // default value
+    version += version.trim().length === 0 ? '0.0.0' : '.0.0.0';
+    let versions = version
+        .split('.')
+        .filter((str) => str !== '')
+        .slice(0, 3);
+    // handle version is not number/decimal
+    versions = versions.map((v) => {
+        if (Number(v) != v)
+            // means the version is include chars
+            throw new Error('Error occured while parsing version!');
+        return Number(v);
+    });
+
+    return new VM(versions[0], versions[1], versions[2]); */
