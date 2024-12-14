@@ -1,5 +1,107 @@
+const  vm =(version ='0.0.1',oldVersions =[])=>{
+    console.log("version:",version) 
+   if (version === ''){version ='0.0.1'}
+//  console.log("started:",oldVersions)  
+   let history = oldVersions;
+   let versionArray=[];
+   history.push(version);
+  //console.log(string, history)
+//             history.push(string);
+           versionArray = version.split('.')
+         // console.log('hint.versionArray:',versionArray)
+          versionArray.splice(3);
+         versionArray= [versionArray[0]||0,versionArray[1]||0,versionArray[2]||0]
+        // console.log('hint.versionArray:',versionArray,!versionArray.every((num) => isNaN(num) === false && parseInt(num) == +num))
+           if(!versionArray.every((num) => isNaN(num) === false && parseInt(num) == +num)){
+             throw new Error("Error occured while parsing version!");
+             }
+          // console.log("hint:",history)
+            version = [versionArray[0]||0,versionArray[1]||0,versionArray[2]||0].join('.')
+ 
+  return {
+      /* hint(string){
+           //console.log(string, history)
+//             history.push(string);
+           versionArray = string.split('.')
+         // console.log('hint.versionArray:',versionArray)
+          versionArray.splice(3);
+         versionArray= [versionArray[0]||0,versionArray[1]||0,versionArray[2]||0]
+         console.log('hint.versionArray:',versionArray)
+           if(!versionArray.every((num) => isNaN(num) == false && parseInt(num) == num)){
+             throw new Error("Error occurred while parsing version!");
+             }
+          // console.log("hint:",history)
+            version = [versionArray[0]||0,versionArray[1]||0,versionArray[2]||0].join('.')
+           },*/
+       major(){
+          // this.hint(version);
+         //  console.log("major:",history)
+           versionArray[0] =`${+versionArray[0] +1}`;
+           versionArray[1]='0' ;
+           versionArray[2] ='0';
+           version = [versionArray[0],versionArray[1],versionArray[2]].join('.')
+           console.log("major:", version)
+           return vm(version,history);
+        }, // increase MAJOR by 1, set MINOR and PATCH to 0
+       minor(){
+        //  this.hint(version);
+           //console.log("minor:",history)
+           versionArray[1] =`${+versionArray[1] +1}`;
+           versionArray[2] ='0';
+           version = versionArray.join('.')
+         console.log("minor:", version)
+           return vm(version,history);
+       },   //increase MINOR by 1, set PATCH to 0
+       patch(){
+         //  this.hint(version);
+         //  console.log("patch:", history)
+           versionArray[2] =`${+versionArray[2] +1}`;
+           version = versionArray.join('.')
+         console.log("patch:", version)
+           return vm(version,history);
+       },  //increase PATCH by 1
+       rollback(){
+         //  console.log("rollback:", history,history[history.length-1])
+           if(history.length <=1){
+               throw new Error("Cannot rollback!");
+           }
+         history.pop()
+           version = history[history.length - 1]
+         //  console.log('rollback.version:',version)
+         history.pop()
+           return vm(version,history);
+       },
+       release(){
+        // console.log("release:",version)
+       //  this.hint(version)
+         console.log("release:",version)
+           return  version;
+       } //*return the MAJOR, MINOR, and PATCH to their values before the previous major/minor/patch call, or throw an exception with the message "Cannot rollback!" if there's no version to roll back to. Multiple calls to rollback() should be possible and restore the version history*/
+  }    
+} 
+//   class VersioningClass{
+//     constructor(version){
+//         this.version = version;
+//     }
+//     start(){
+       
+//     }
+
+  vm("1.2.3.4").major().patch().rollback()
+/*
+parameter a number formated  "{MAJOR}.{MINOR}.{PATCH}" where minor and patch are optional
+return object, if format is incorrect  return "Error occured while parsing version!"
+include chainable methods: 
+major() - increase MAJOR by 1, set MINOR and PATCH to 0
+minor() - increase MINOR by 1, set PATCH to 0
+patch() - increase PATCH by 1
+rollback()
+1.2.3.release() > 1.2.3
+1-2-3.release() > "Error occured while parsing version!"
+1.2.3.minor.release() > 1.3.0
 
 
+*/ 
 
 /** In this kata we are going to mimic a software versioning system.
 
