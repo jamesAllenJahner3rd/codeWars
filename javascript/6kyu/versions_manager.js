@@ -1,47 +1,64 @@
 class VersionMimic{
-    constructor(major,minor,patch){
-     
-      this.major  = major
-      this.minor  = minor
-      this.patch  = patch
-    }
-    major(major,minor,patch){
-     console.log('minor',major,minor,patch)
-      major += 1
-     minor = 0
-      patch = 0
-      return vm([major,minor,patch].join('.'))
-    }
-    minor(major,minor,patch){
-      console.log('minor',major,minor,patch)
-      
-     minor += 1
-      patch = 0
-      return vm([major,minor,patch].join('.'))
-    }
-     patch(major,minor,patch){
-       patch += 1
-       console.log('patch')
-      return vm([major,minor,patch].join('.'))
-    }
-     rollback(major,minor,patch){
-       console.log('rollback')
-      return vm([major,minor,patch].join('.'))
-    }
-     release(major,minor,patch){
-       console.log('release',major,minor,patch)
-      return [major,minor,patch].join('.')
-    }
+  constructor(aMajor,aMinor,aPatch){
+    console.log(aMajor,aMinor,aPatch );
+    [this._major, this._minor, this._patch] = [aMajor, aMinor, aPatch].map(e=> {
+      console.log(e)
+      if (isNaN(e)  ){
+        throw new Error('Error occured while parsing version!')
+      }
+      return Number(e)||0;
+    });
+    console.log('parsed',this._major,this._minor,this._patch );
+    this.versionLegacy = []   ; 
+    
   }
-  function vm(versionInput ="0.0.1"){
-    versionInput= versionInput||'0.0.1'
-    console.log(versionInput)
-    let versionArray = versionInput.split('.')
-    console.log(versionArray)
-    return new VersionMimic(versionArray[0],versionArray[1],versionArray[2])
-  }  
-   vm("1.2.3.4").major().patch().rollback()
-  /* 
+  versionLegacyUpdater(){
+    this.versionLegacy.push([this._major, this._minor, this._patch]);
+  };
+  major(){ 
+    this.versionLegacyUpdater()  ;   
+   this._major += 1;
+   this._minor = 0;
+   this._patch = 0;
+   console.log('major',this._major,this._minor,this._patch );
+    return this;
+  }
+  minor(){
+    this.versionLegacyUpdater() ;
+    
+    this._minor += 1;
+    this._patch = 0;
+    console.log('minor',this._major,this._minor,this._patch );
+    return this;
+  };
+   patch(){
+    this.versionLegacyUpdater() ;
+    this._patch += 1;
+    console.log('patch',this._major,this._minor,this._patch );
+    return this;
+  } // this.versionLegacy.pop() ;
+   rollback(){
+    if(this.versionLegacy.length < 1){
+      throw new Error("Cannot rollback!")
+    }
+    [this._major, this._minor, this._patch] = this.versionLegacy.pop(); 
+    console.log('rollback', this._major, this._minor, this._patch);
+    return this;
+  };
+   release(){
+     console.log('release',this._major,this._minor,this._patch );
+    return [this._major,this._minor,this._patch ].join('.');
+  };
+};
+function vm(versionInput ="0.0.1"){
+  versionInput= versionInput||'0.0.1';
+  console.log(versionInput);
+  let versionArray = versionInput.split('.');
+  console.log(versionArray);
+  return new VersionMimic(versionArray[0]||0,versionArray[1]||0,versionArray[2]||0);
+}  ;
+   vm("1.2.3").major().patch().rollback().release();
+  
  
 /*const  vm =(version ='0.0.1',oldVersions =[])=>{
     console.log("version:",version) 
