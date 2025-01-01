@@ -20,27 +20,28 @@ Wall height is 45 cm and wall width is 180 cm. There are 21 large bricks. (Yello
 
 So answer is "21L6M6S" */
 const calculateBricksCount=(width,height)=>{
+  
     let blockCount={
       l:0,
       m:0,
       s:0
     }
+    
     const numberOfLargeBlockPerRow = width/60
     const numberOfRows = height/5
     const numberOfRepeat = parseInt(numberOfRows/3)
     const remainderOfRows =numberOfRows%3
+    
     blockCount.l = (numberOfLargeBlockPerRow*3-2 )*numberOfRepeat + (remainderOfRows*numberOfLargeBlockPerRow) -Math.max(remainderOfRows-1,0 )
     blockCount.m = (2)*numberOfRepeat + Math.max(remainderOfRows-1,0 )
     blockCount.s = (2)*numberOfRepeat + Math.max(remainderOfRows-1,0 )
-    
-    
-    let output = ""
-    if (blockCount.l !== 0)
-      output +=`${ blockCount.l}L`
-     if (blockCount.m !== 0)
-      output +=`${ blockCount.m}M`
-       if (blockCount.s !== 0)
-      output +=`${ blockCount.s}S`
       
-     return output
+    let output = ""
+    if (blockCount.l !== 0){
+      output +=`${ blockCount.l}L`}
+    if (blockCount.m !== 0){
+      output +=`${ blockCount.m}M`}
+    if (blockCount.s !== 0){
+      output +=`${ blockCount.s}S`}
+    return output
   }
