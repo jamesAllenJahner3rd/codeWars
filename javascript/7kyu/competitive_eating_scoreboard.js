@@ -31,6 +31,41 @@ Object-oriented ProgrammingFundamentals
  * prep
  * parameter an array of objects containing name, and foods
  * return an object containing a name and score.
- * exa
+ * examples
+ * [
+  {name: "Habanero Hillary", chickenwings: 5 , hamburgers: 17, hotdogs: 11},
+  {name: "Big Bob" , chickenwings: 20, hamburgers: 4, hotdogs: 11}
+]
+  [
+  {name: "Big Bob", score: 134},
+  {name: "Habanero Hillary", score: 98}
+]
+[
+  {name: "jay", chickenwings: 1 , hamburgers: 1, hotdogs: 1},
+  {name: "john" , chickenwings: 2, hamburgers: 2, hotdogs:2}
+]
+  [
+  {name: "jay", score: 10},
+  {name: "john", score: 20}
+]
+[
+  {name: "james", chickenwings: 0 , hamburgers: 1, hotdogs: 0},
+  {name: "lily" , chickenwings: 0, hamburgers: 0, hotdogs:2}
+]
+  [
+  {name: "james", score: 3},
+  {name: "lily", score: 4}
+]
+
+
+ * 
+ * 
+ * 
+ * 
+ * 
  * pues
+ * 
+ * need a method to sum up the points for each food
+ * need to  compare the scores
+ * need to  return the object with the score and name
  */
