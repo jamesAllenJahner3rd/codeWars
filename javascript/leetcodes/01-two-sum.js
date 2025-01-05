@@ -36,12 +36,8 @@ return index of the two numbers that add to the target
  * 
  * 
  */
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
-var twoSum = function(nums, target) {
+
+/*var twoSum = function(nums, target) {
     const map = {}
     nums.forEach((e,i,a)=>{
         map[e] = i
@@ -53,22 +49,20 @@ var twoSum = function(nums, target) {
         }
     })
     return output
-};
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
+};*/
 var twoSum = function(nums, target) {
-    const map = {}
-    nums.forEach((e,i,a)=>{
-        map[e] = i
-    })
     let output =[]
-     nums.forEach((e,i,a)=>{
-        if(Object.hasOwn(map,target -e) && i !== map[target -e]){
-            output = [i, map[target - e]]
+    for (let i = 0; i <=nums.length;i++){
+        for(let j = 0; j <=nums.length;j++){
+            if (nums[i] +nums[j] ===target && i!==j){
+                output = [i,j]
+                
+                
+            }
+        
         }
-    })
-    return output
+
+    }
+    console.log(output)
 };
+twoSum([2,5,4,5],6)
