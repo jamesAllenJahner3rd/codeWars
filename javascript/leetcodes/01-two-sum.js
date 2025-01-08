@@ -50,7 +50,7 @@ return index of the two numbers that add to the target
     })
     return output
 };*/
-var twoSum = function(nums, target) {
+/*var twoSum = function(nums, target) {
     let output =[]
     for (let i = 0; i <=nums.length;i++){
         for(let j = 0; j <=nums.length;j++){
@@ -64,5 +64,27 @@ var twoSum = function(nums, target) {
 
     }
     console.log(output)
+};*/
+/*var twoSum = function(nums, target) {
+nums.
+
+    console.log(output)
 };
 twoSum([2,5,4,5],6)
+*/
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+    let map = new Map();
+    let output = [];
+    nums.forEach((e, i, a) => {
+        if (map.has(target - e) && map.get(target - e) !== i) {
+            output = [map.get(target - e), i]
+        }
+        map.set(e, i)
+    });
+    return output
+};
