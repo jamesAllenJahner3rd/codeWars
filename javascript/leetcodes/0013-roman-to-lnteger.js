@@ -202,3 +202,72 @@ return output
 //     console.log(output);
 //     return output
 // };
+// var romanToInt = function(s) {
+//         let output = 0;
+//         i = s.length-1
+//         while (i>=0) {
+//             switch(s[i]){
+//             case 'I':
+//                 output+=1
+//                 i--
+//                 break;
+//             case 'V':
+//                 if (s[i-1] ==='I'){
+//                     output+=4
+//                     i-=2
+//                 }else{
+//                     output+=5
+//                     i--
+
+//                 }
+//             break;
+//             case 'X':
+//                     if (s[i-1] ==='I'){
+//                     output+=9
+//                 i-=2
+//                 }else{
+//                     output+=10
+//                     i--
+//                 }
+//                 break;
+//             case 'L':
+//                 if (s[i-1] ==='X'){
+//                     output+=40
+//                     i-=2
+//                 }else{
+//                     output+=50
+//                     i--
+//                 }
+//                 break;
+//             case 'C':
+//                 if (s[i-1] ==='X'){
+//                     output+=90
+//                     i-=2
+//                 }else{
+//                     output+=100
+//                     i--
+//                 }
+//                 break;
+//             case 'D':
+//                 if (s[i-1] ==='C'){
+//                     output+=400
+//                     i-=2
+//                 }else{
+//                     output+=500
+//                     i--
+//                 }
+//                 break;
+//             case 'M':
+//                 if (s[i-1] ==='C'){
+//                     output+=900
+//                     i-=2
+//                 }else{
+//                     output+=1000
+//                     i--
+//                 }
+//                 break;
+//             }
+//         }
+//         console.log(output);
+//         return output
+//     };
