@@ -271,3 +271,91 @@ return output
 //         console.log(output);
 //         return output
 //     };
+var romanToInt = function(s) {
+    console.log(s)
+    
+    let output = 0;
+    
+    output = s.split('').reduce((acc,cur,i,arr)=>{
+        let map = new Map([
+        ['I',1],
+        ["V",(arr[i-1] !== 'I' )? 5:3],
+        ["X",(arr[i-1] !== 'I' )? 10:8],
+        ["L",(arr[i-1] !== 'X' )? 50:30],
+        ["C",(arr[i-1] !== 'X' )? 100:80],
+        ["D",(arr[i-1] !== 'C' )? 500:300],
+        ["M",(arr[i-1] !== 'C' )? 1000:800],
+    ])
+        console.log('acc',acc,'acc-1',arr[i-1],'cur',cur,'i',i,'arr',arr,'map.get(cur)',map.get(cur))
+
+        acc += map.get(cur) 
+        return acc
+    },0)
+    console.log(output)
+    return output;
+};
+    //     switch(s[i]){
+    //     case 'I':
+    //         output+=1
+    //         i--
+    //         break;
+    //     case 'V':
+    //         if (s[i-1] ==='I'){
+    //             output+=4
+    //             i-=2
+    //         }else{
+    //             output+=5
+    //             i--
+
+    //         }
+    //     break;
+    //     case 'X':
+    //             if (s[i-1] ==='I'){
+    //             output+=9
+    //         i-=2
+    //         }else{
+    //             output+=10
+    //             i--
+    //         }
+    //         break;
+    //     case 'L':
+    //         if (s[i-1] ==='X'){
+    //             output+=40
+    //             i-=2
+    //         }else{
+    //             output+=50
+    //             i--
+    //         }
+    //         break;
+    //     case 'C':
+    //         if (s[i-1] ==='X'){
+    //             output+=90
+    //             i-=2
+    //         }else{
+    //             output+=100
+    //             i--
+    //         }
+    //         break;
+    //     case 'D':
+    //         if (s[i-1] ==='C'){
+    //             output+=400
+    //             i-=2
+    //         }else{
+    //             output+=500
+    //             i--
+    //         }
+    //         break;
+    //     case 'M':
+    //         if (s[i-1] ==='C'){
+    //             output+=900
+    //             i-=2
+    //         }else{
+    //             output+=1000
+    //             i--
+    //         }
+    //         break;
+    //     }
+    // }
+    // console.log(output);
+   
+romanToInt("MCMXCIV")
