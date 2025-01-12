@@ -141,3 +141,64 @@ return output
     console.log(output);
     return output
 };*/
+// var romanToInt = function(s) {
+//     let output = 0;
+    
+//     for (i = s.length-1;i>=0 ;i-- ) {
+//         switch(s[i]){
+//         case 'I':
+//             output+=1
+//             break;
+//         case 'V':
+//             if (s[i-1] ==='I'){
+//                 output+=4
+//                 i--
+//             }else{
+//                 output+=5
+//             }
+//         break;
+//         case 'X':
+//                 if (s[i-1] ==='I'){
+//                 output+=9
+//             i--
+//             }else{
+//                 output+=10
+//             }
+//             break;
+//         case 'L':
+//             if (s[i-1] ==='X'){
+//                 output+=40
+//                 i--
+//             }else{
+//                 output+=50
+//             }
+//             break;
+//         case 'C':
+//             if (s[i-1] ==='X'){
+//                 output+=90
+//                 i--
+//             }else{
+//                 output+=100
+//             }
+//             break;
+//         case 'D':
+//             if (s[i-1] ==='C'){
+//                 output+=400
+//                 i--
+//             }else{
+//                 output+=500
+//             }
+//             break;
+//         case 'M':
+//             if (s[i-1] ==='C'){
+//                 output+=900
+//                 i--
+//             }else{
+//                 output+=1000
+//             }
+//             break;
+//         }
+//     }
+//     console.log(output);
+//     return output
+// };
