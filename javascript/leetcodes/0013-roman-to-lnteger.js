@@ -274,25 +274,28 @@ return output
 var romanToInt = function(s) {
     console.log(s)
     
-    let output = 0;
     
-    output = s.split('').reduce((acc,cur,i,arr)=>{
-        let map = new Map([
-        ['I',1],
-        ["V",(arr[i-1] !== 'I' )? 5:3],
-        ["X",(arr[i-1] !== 'I' )? 10:8],
-        ["L",(arr[i-1] !== 'X' )? 50:30],
-        ["C",(arr[i-1] !== 'X' )? 100:80],
-        ["D",(arr[i-1] !== 'C' )? 500:300],
-        ["M",(arr[i-1] !== 'C' )? 1000:800],
-    ])
-        console.log('acc',acc,'acc-1',arr[i-1],'cur',cur,'i',i,'arr',arr,'map.get(cur)',map.get(cur))
-
-        acc += map.get(cur) 
-        return acc
+     let map = new Map([
+        ['I', 1],
+        ["V", 5],
+        ["X", 10],
+        ["L", 50],
+        ["C", 100],
+        ["D", 500],
+        ["M", 1000],
+     ])
+    return s.split('').reduce((acc,cur,i,arr)=>{
+       let previous = arr[i-1]
+    
+        console.log('acc',acc,' previous', previous,'\n\tcur',cur,'i',i,'\n\tarr',arr,'map.get(cur)',map.get(cur))
+        console.log('map',map.get(cur)<= (map.get(previous)||0))
+        console.log('mapinput',map.get(cur),2*map.get(previous), map.get(cur))
+        acc += (map.get(cur)<= (map.get(previous)||10000))?map.get(cur) :(map.get(cur) -2*map.get(previous));
+            console.log(acc)
+            return acc
     },0)
     console.log(output)
-    return output;
+     
 };
     //     switch(s[i]){
     //     case 'I':
