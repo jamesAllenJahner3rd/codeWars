@@ -53,24 +53,43 @@ strs[i] consists of only lowercase English letters if it is non-empty.
 // };
 
 
-var longestCommonPrefix = function(strs) {
-    let map =[...strs[0]]
-    for (let argCount = 0,letterCount = 0; letterCount< strs[0].length;){
-       console.log(strs[argCount][letterCount],map[letterCount] )
-        if(strs[argCount][letterCount]===map[letterCount]){
-            argCount++
-        }else{
-            map = map.slice(0,letterCount)
-           break
-        }
-        console.log(strs.length-1<argCount )
-        if (strs.length-1<argCount){
-            letterCount++
-            argCount=0
-        }
+// var longestCommonPrefix = function(strs) {
+//     let map =[
         
+//     ]
+//     for (let argCount = 0,letterCount = 0; letterCount< strs[0].length;){
+//        console.log(strs[argCount][letterCount],map[letterCount] )
+//         if(strs[argCount][letterCount]===map[letterCount]){
+//             argCount++
+//         }else{
+//             map = map.slice(0,letterCount)
+//            break
+//         }
+//         console.log(strs.length-1<argCount )
+//         if (strs.length-1<argCount){
+//             letterCount++
+//             argCount=0
+//         }
+        
+//     }
+//     console.log(map.join(""))
+//     return map.join("")
+// }
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+    let res = '';
+    strs.sort();
+    console.log(strs)
+    const first = strs[0];
+    const last = strs[strs.length - 1];
+    for(let i=0; i<first.length; i++) {
+        if(first[i] !== last[i]) break;
+        res += first[i];
     }
-    console.log(map.join(""))
-    return map.join("")
-}
-longestCommonPrefix( ["aa","aa"])
+    return res;
+};
+longestCommonPrefix( [["flower","flow","flight"]])
