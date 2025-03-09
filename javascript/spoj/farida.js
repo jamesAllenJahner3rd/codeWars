@@ -173,16 +173,46 @@ inputParser(n){let meno = Array(input[0]).fill(-1)
 }
 
 */
-  function farida(...input) {
-    
-    let n = input[0];
-    let memo = new Array(n).fill(-1);
-    for(let i =0, monsterNum = 0; i <n; i++){
-      let k = 2 + i + monsterNum;
-      monsterNum =input[k-1]
-      memo[i] = input.slice( k, k + monsterNum);
-      
-    }
-    
+function farida(...input) {
+  let output = [];  
+  let n = input[0];
+  let memo = new Array(n).fill(-1);
+
+  let currentIndex = 1;
+
+  for (let i = 0; i < n; i++) {
+      let monsterNum = input[currentIndex];
+      let k = currentIndex + 1;
+      memo[i] = input.slice(k, k + monsterNum);
+      output[i] = new Array(monsterNum).fill(-1);
+      currentIndex = k + monsterNum;
+  }
+
+  function helper(a, i) {
+      if (i >= output[a].length) { return 0; }
+      if (output[a][i] !== -1) { return output[a][i]; }
+
+      let skipCurrent = helper(a, i + 1);
+      let takeCurrent = memo[a][i] + helper(a, i + 2);
+
+      output[a][i] = Math.max(skipCurrent, takeCurrent);
+      return output[a][i];
+  }
+
+  for (let a = 0; a < n; a++) {
+      console.log(`Case ${a + 1}: ${helper(a, 0)}`);
+  }
 }
-farida(2, 5, 1, 2, 3, 4, 5, 1, 10);
+
+farida(
+  9,
+  5, 1, 1, 1, 1, 1,
+  0,
+  2, 12, 15,
+  2, 15, 12,
+  5, 10, 1, 1, 1, 1,
+  3, 12, 3, 1,
+  3, 2, 2, 2,
+  2, 5, 2,
+  4, 10, 5, 2, 1000
+);
