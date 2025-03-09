@@ -182,25 +182,25 @@ function farida(...input) {
 
   for (let i = 0; i < n; i++) {
       let monsterNum = input[currentIndex];
-      let k = currentIndex + 1;
-      memo[i] = input.slice(k, k + monsterNum);
+      let cutHere = currentIndex + 1;
+      memo[i] = input.slice(cutHere, cutHere + monsterNum);
       output[i] = new Array(monsterNum).fill(-1);
-      currentIndex = k + monsterNum;
+      currentIndex = cutHere + monsterNum;
   }
 
-  function helper(a, i) {
-      if (i >= output[a].length) { return 0; }
-      if (output[a][i] !== -1) { return output[a][i]; }
+  function helper(aCase, i) {
+      if (i >= output[aCase].length) { return 0; }
+      if (output[aCase][i] !== -1) { return output[aCase][i]; }
 
-      let skipCurrent = helper(a, i + 1);
-      let takeCurrent = memo[a][i] + helper(a, i + 2);
+      let skipCurrent = helper(aCase, i + 1);
+      let takeCurrent = memo[aCase][i] + helper(aCase, i + 2);
 
-      output[a][i] = Math.max(skipCurrent, takeCurrent);
-      return output[a][i];
+      output[aCase][i] = Math.max(skipCurrent, takeCurrent);
+      return output[aCase][i];
   }
 
-  for (let a = 0; a < n; a++) {
-      console.log(`Case ${a + 1}: ${helper(a, 0)}`);
+  for (let aCase = 0; aCase < n; aCase++) {
+      console.log(`Case ${aCase + 1}: ${helper(aCase, 0)}`);
   }
 }
 
