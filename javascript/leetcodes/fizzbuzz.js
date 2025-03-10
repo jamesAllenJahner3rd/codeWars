@@ -68,3 +68,48 @@ var fizzBuzz = function(n) {
     return output
 };
  */
+var fizzBuzz = function(n) {
+    let output = new Array(n); // Create an array of size n
+
+    function helper(i = 0) {
+        if (i >= n) {
+            return; // Stop recursion when index reaches n
+        }
+
+        if ((i + 1) % 15 === 0) {
+            output[i] = 'FizzBuzz';
+        } else if ((i + 1) % 3 === 0) {
+            output[i] = 'Fizz';
+        } else if ((i + 1) % 5 === 0) {
+            output[i] = 'Buzz';
+        } else {
+            output[i] = `${i + 1}`;
+        }
+
+        helper(i + 1); // Recursive call for the next index
+    }
+
+    helper(); // Initial call to the recursive function
+    return output; // Return the final output
+};
+var fizzBuzz = function(n) {
+    let output = new Array(n)
+    
+    function helper(i = 0) {
+        if (i >= n) {
+            return 
+        }
+        if ((i + 1) % 15 === 0) {
+            output[i] = 'Fizzbuzz'
+        } else if ((i + 1) % 3 === 0) {
+            output[i] = 'Fizz'
+        } else if ((i + 1) % 5 === 0) {
+            output[i] = 'Buzz'
+        } else {
+            output[i] = `${i + 1}`
+        }
+        helper(i + 1)
+    }
+    helper()
+    return output
+};
