@@ -45,32 +45,54 @@ trips[i].length == 3
 var carPooling = function(trips, capacity) {
 let car = new Array(1).fill(0)
 let summedCapacity = true
-function traveling(mile){
-    if (mile >= car.length){
-        return
-    }
-    trips.forEach((e,i,a) => {
-        if(e[2]> car.length){
-            car.length =e[2]
+// function traveling(mile){
+//     if (mile >= car.length){
+//         return
+//     }
+//     trips.forEach((e,i,a) => {
+//         if(e[2]> car.length){
+//             car.length =e[2]
             
-        }
-       // console.log(car[mile])
-        if(car[mile] === undefined){
-                car[mile] =0;
-            }
+//         }
+//        // console.log(car[mile])
+//         if(car[mile] === undefined){
+//                 car[mile] =0;
+//             }
         
-        if(( e[1] <= mile)&&(e[2] > mile)){
-            let num =e[0];
-            car [mile]+=e[0];
-        } ;
-        if (car[mile] >capacity){
-            summedCapacity =false
+//         if(( e[1] <= mile)&&(e[2] > mile)){
+//             let num =e[0];
+//             car [mile]+=e[0];
+//         } ;
+//         if (car[mile] >capacity){
+//             summedCapacity =false
              
+//         }
+//     })
+//     traveling(mile+1)
+// }
+// traveling(0)
+// return summedCapacity
+// }
+
+function carPooling(trips, capacity) {
+    // Array to track changes in passenger count
+    let passengerChanges = new Array(1001).fill(0); // Maximum location is 1000
+
+    for (let [numPassengers, start, end] of trips) {
+        passengerChanges[start] += numPassengers; // Increase passengers at pick-up point
+        passengerChanges[end] -= numPassengers;   // Decrease passengers at drop-off point
+    }
+
+    // Check capacity with a running sum
+    let currentPassengers = 0;
+    for (let change of passengerChanges) {
+        currentPassengers += change;
+        if (currentPassengers > capacity) {
+            return false; // Capacity exceeded
         }
-    })
-    traveling(mile+1)
-}
-traveling(0)
-return summedCapacity
-}
+    }
+
+    return true; 
+
+
 carPooling([[2,1,5],[3,3,7]],3)
