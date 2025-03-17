@@ -21,7 +21,7 @@ var sortedArrayToBST = function(nums) {
       // *  save this number
       function CreateTree(nums){
         this.val =  nums [median]
-        
+
         this.left = CreateTree(median-1)||null
         this.right = CreateTree(medain +1)||null
      
@@ -35,6 +35,7 @@ var sortedArrayToBST = function(nums) {
     return CreateTree(nums)
 };
  /**
+  * 
   * 108. Convert Sorted Array to Binary Search Tree
 Easy
 Topics
@@ -84,4 +85,33 @@ nums is sorted in a strictly increasing order.
   * trun the function for left and right
   * if the i >= n reeturn  null
   * if i =>0 return null
-  *  */
+  *  
+  * 
+  * 
+  * 
+  * class TreeNode {
+    constructor(val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class Solution {
+    sortedArrayToBST(nums) {
+        if (nums.length === 0) return null;
+        return this.buildBST(nums, 0, nums.length - 1);
+    }
+
+    buildBST(nums, start, end) {
+        if (start > end) return null;
+
+        const mid = Math.floor((start + end) / 2); // Calculate middle index
+        const root = new TreeNode(nums[mid]);
+
+        root.left = this.buildBST(nums, start, mid - 1);
+        root.right = this.buildBST(nums, mid + 1, end);
+
+        return root;
+    }
+}*/
