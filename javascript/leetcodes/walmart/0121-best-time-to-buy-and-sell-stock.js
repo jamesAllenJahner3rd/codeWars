@@ -43,35 +43,47 @@ return a int profit or 0
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices) {
-    let maxDailyProfit = 0
+// var maxProfit = function (prices) {
+//     let maxDailyProfit = 0
 
 
-    function incrementDays() {
-        maxDailyProfit = prices.reduce((acc, cur, i, a) => {
-            let next = helper(i, i, acc)
-            if (next > acc) {
-                return next
-            } else {
-                return acc
-            }
-        }, 0);
-    };
-    function helper(i, n, acc) {
-        if (i >= prices.length) { return acc };
+//     function incrementDays() {
+//         maxDailyProfit = prices.reduce((acc, cur, i, a) => {
+//             let next = helper(i, i, acc)
+//             if (next > acc) {
+//                 return next
+//             } else {
+//                 return acc
+//             }
+//         }, 0);
+//     };
+//     function helper(i, n, acc) {
+//         if (i >= prices.length) { return acc };
 
-        let temp = Math.max(
-    i + 1 < prices.length ? prices[i + 1] - prices[n] : 0,
-    i + 2 < prices.length ? prices[i + 2] - prices[n] : 0
-);
-        if (temp > acc) {
-            acc = temp
-        }
-        //console.log(prices[n], prices[i + 1], prices[i + 2], temp, acc)
+//         let temp = Math.max(
+//     i + 1 < prices.length ? prices[i + 1] - prices[n] : 0,
+//     i + 2 < prices.length ? prices[i + 2] - prices[n] : 0
+// );
+//         if (temp > acc) {
+//             acc = temp
+//         }
+//         //console.log(prices[n], prices[i + 1], prices[i + 2], temp, acc)
         
-        return helper(i + 1, n, acc)
-    };
-    incrementDays();
-    return maxDailyProfit;
+//         return helper(i + 1, n, acc)
+//     };
+//     incrementDays();
+//     return maxDailyProfit;
 
+// };
+var maxProfit = function (prices) {
+    let buy = prices[0];
+        let profit = 0;
+        for (let i = 1; i < prices.length; i++) {
+            if (prices[i] < buy) {
+                buy = prices[i];
+            } else if (prices[i] - buy > profit) {
+                profit = prices[i] - buy;
+            }
+        }
+        return profit;
 };
