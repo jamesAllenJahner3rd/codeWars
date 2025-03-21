@@ -41,57 +41,79 @@ s consists of parentheses only '()[]{}'.
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {
-    map = new Map([['[', 0], ['{', 0], ['(', 0]]);
-    let output = true
-    depth = 0
-    let a = 1, b = 1, c = 1;
-    for (let i = 0; i <= s.length - 1; i++) {
-        if (s[i] === '[') {
-            depth += 1;
-            a = depth;
-            map.set('[', map.get('[') + a);
-            output = false
-        }
-        if (s[i] === ']') {
-            map.set('[', map.get('[') - depth);
-            depth -= 1;
-            output = true
-        }
-        if (s[i] === '{') {
-            depth += 1;            
-            b = depth;
-            map.set('{', map.get('{') + b);
-            output = false
-        }
-        if (s[i] === '}') {
-            map.set('{', map.get('{') - depth);
-            depth -= 1;
-            output = true
-        }
-        if (s[i] === '(') {
-            depth += 1;
-            c = depth;
-            map.set('(', map.get('(') + c);
-            output = false
-            console.log(map,'(')
-        }
-        if (s[i] === ')') {
-            map.set('(', map.get('(') - depth);
-            depth -= 1;
-            console.log(map,")")
-            output = true
-        }
-console.log(map,i,"depth:", depth)
+// var isValid = function (s) {
+//     map = new Map([['[', 0], ['{', 0], ['(', 0]]);
+//     let output = true
+//     depth = 0
+//     let a = 1, b = 1, c = 1;
+//     for (let i = 0; i <= s.length - 1; i++) {
+//         if (s[i] === '[') {
+//             depth += 1;
+//             a = depth;
+//             map.set('[', map.get('[') + a);
+//             output = false
+//         }
+//         if (s[i] === ']') {
+//             map.set('[', map.get('[') - depth);
+//             depth -= 1;
+//             output = true
+//         }
+//         if (s[i] === '{') {
+//             depth += 1;            
+//             b = depth;
+//             map.set('{', map.get('{') + b);
+//             output = false
+//         }
+//         if (s[i] === '}') {
+//             map.set('{', map.get('{') - depth);
+//             depth -= 1;
+//             output = true
+//         }
+//         if (s[i] === '(') {
+//             depth += 1;
+//             c = depth;
+//             map.set('(', map.get('(') + c);
+//             output = false
+//             console.log(map,'(')
+//         }
+//         if (s[i] === ')') {
+//             map.set('(', map.get('(') - depth);
+//             depth -= 1;
+//             console.log(map,")")
+//             output = true
+//         }
+// console.log(map,i,"depth:", depth)
 
-        if (![...map.values()].every(x => x > -1) || Math.sign(depth)===-1 ) {
-console.log(map,i)
-            output = false
-            return output
+//         if (![...map.values()].every(x => x > -1) || Math.sign(depth)===-1 ) {
+// console.log(map,i)
+//             output = false
+//             return output
+//         }
+//     }
+//     if(depth!== 0){
+//         return false
+//     }
+//     return output
+// };
+var isValid = function (s) {
+    const stack = [];
+    const pairs = {
+        ']': '[',
+        '}': '{',
+        ')': '('
+    };
+    
+    for (let i = 0; i < s.length; i++) {
+        const char = s[i];
+        if (char === '[' || char === '{' || char === '(') {
+            stack.push(char); // Push opening brackets to the stack
+        } else if (char === ']' || char === '}' || char === ')') {
+            if (stack.pop() !== pairs[char]) {
+                return false; // Mismatch found
+            }
         }
     }
-    if(depth!== 0){
-        return false
-    }
-    return output
+    
+    // If stack is empty, all brackets are matched
+    return stack.length === 0;
 };
