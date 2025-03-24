@@ -29,15 +29,24 @@ If all assertions pass, then your solution will be accepted.*/
  * filter push each to a temp
  * then return temp
  */
+// var removeDuplicates = function(nums) {
+//     let temp = []
+//     nums =nums.filter((number)=> {
+//         if (!temp.includes(number)){
+//             temp.push(number)
+//             return number
+//         }
+//     })
+//     console.log(temp,nums)
+//     let k = nums.length
+//     return k
+// };
 var removeDuplicates = function(nums) {
     let temp = []
-    nums =nums.filter((number)=> {
-        if (!temp.includes(number)){
-            temp.push(number)
-            return number
-        }
-    })
-    console.log(temp,nums)
+    for(let i =0;i<=nums.length;i++){
+        !temp.includes(nums[i])? temp.push(nums[i]):nums.splice(i,1)&& i--
+    }
+        console.log(nums)
     let k = nums.length
     return k
 };
