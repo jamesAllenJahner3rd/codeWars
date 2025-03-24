@@ -69,7 +69,7 @@ var mergeTwoLists = function(list1, list2) {
             curr1 = curr1.next;
         } else {
             temp.next = curr2;
-            curr2 = curr2.next;
+            curr2 = curr2.next;///lll
         }
         temp = temp.next;
     }
