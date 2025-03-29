@@ -1,3 +1,44 @@
+/**paramate a string with brackets
+ * return boolean if valid
+ *  
+ * (())
+ * ({}{})
+ * {(})  check for the next close
+ * (
+ * ({}{}[]})
+ * keep track of the opens
+ * meno the opens
+ */
+
+
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+    let openingsList = []
+    let brackets = {
+        ")": "(",
+        "}": "{",
+        "]": "["
+    }
+    for (let bracket of s) {
+        
+
+        if (!brackets[bracket]) {
+            openingsList.push(bracket)
+        } else {
+            let pop = openingsList.pop()
+            if(brackets[bracket] !== pop) { return false}
+        }
+    }
+    return openingsList.length === 0?    true:false  
+    
+}
+
+
+
 /**20. Valid Parentheses
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
