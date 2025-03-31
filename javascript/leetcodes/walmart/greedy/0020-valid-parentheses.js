@@ -16,26 +16,6 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {
-    let openingsList = []
-    let brackets = {
-        ")": "(",
-        "}": "{",
-        "]": "["
-    }
-    for (let bracket of s) {
-        
-
-        if (!brackets[bracket]) {
-            openingsList.push(bracket)
-        } else {
-            let pop = openingsList.pop()
-            if(brackets[bracket] !== pop) { return false}
-        }
-    }
-    return openingsList.length === 0?    true:false  
-    
-}
 
 
 
@@ -158,3 +138,24 @@ var isValid = function (s) {
     // If stack is empty, all brackets are matched
     return stack.length === 0;
 };
+var isValid = function (s) {
+    let openingsList = []
+    let brackets = {
+        ")": "(",
+        "}": "{",
+        "]": "["
+    }
+    for (let bracket of s) {
+        
+
+        if (!brackets[bracket]) {
+            openingsList.push(bracket)
+        } else {
+            let pop = openingsList.pop()
+            if(brackets[bracket] !== pop) { 
+                return false}
+        }
+    }
+    return openingsList.length === 0?    true:false  
+    
+}
