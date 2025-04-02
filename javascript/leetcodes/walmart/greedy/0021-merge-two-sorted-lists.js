@@ -31,8 +31,27 @@ Both list1 and list2 are sorted in non-decreasing order.
 /**
  *parameters two linked list
  return one linked list
+ a linked Node is {
+                    value: x,
+                    next: anotherNode
+                }
+      so are by comparing the value of  the link, 
+        then and the lowest to the newlist. 
+            then add the next node with the next lowest value. 
+                till the value is null.
  */
+var mergeTwoLists = function(list1, list2){
+    let output ={value:null,next:null}
+    let current1 =list1
+    let current2 =list2
+    while(current !== null){
+        output.value =  Math.min(current1.value,current2.value)
+        if( output.value === list1.value){
+            current1=list1.next
+        } else {current2=list2.next}
+    } 
 
+};
 
 
 
