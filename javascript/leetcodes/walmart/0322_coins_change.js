@@ -1,4 +1,70 @@
-/**322. Coin Change
+
+ var coinChange = function(coins, amount) {
+//    let fewestCoins = coins[i+1] + coin [i]
+  if (amount === 0)return 0 // checks for 0 coins
+  let n =coins.length //number of coin types
+  if (n === 1){
+   return amount % coins[0] === 0? amount/coins[0]: -1
+  }//checks for one coin
+ coins.sort((a,b) => a - b);// sort coins
+  
+
+ const minCoin = coins[0];// keep track of coins 
+    if (amount === minCoin) return 1; // checks if the smallest coin  = the amount
+    let idx = 1;// setting an index
+    let gcdVal = minCoin; //greatest common divisor value is set to the smallest coin
+
+    // Loop through coins while the index < the number of coin types AND the amount is >= the current coin’s value.
+   
+    while (idx < n && amount >= coins[idx]) { // as long as the index < the number of coin types AND the amount is >= the current coins' value
+        if (amount === coins[idx]) return 1; // check if the amount is  = to the current coins' value: answer would be 1
+        gcdVal = gcd(coins[idx], gcdVal); // trigger the function Greatest common divisor Setting this to the remainder of coins[idx]/ gcdVal
+        coins[idx] -= minCoin; // subtract the smallest coin form the current coin's value.
+        idx++;//increase the index by one
+    }
+    if (amount % gcdVal !== 0) return -1;
+
+    const minVal = Math.floor((amount - 1) / (coins[idx - 1] + minCoin)) + 1;
+    const maxVal = Math.floor(amount / minCoin); // Upper bound for the number of coins.
+
+    // Loop through possible coin combinations within calculated bounds.
+
+    for (let i = minVal; i <= maxVal; i++) {
+        if (findCombination(coins, 1, idx - 1, amount - i * minCoin, i)) {
+            return i; // Return the minimum number of coins needed.
+
+        }
+    }
+    return -1; // If no valid combination is found, return -1.
+
+};
+
+function findCombination(coins, left, right, target, maxCoins) {
+    if (target === 0) return true;
+    if (target < coins[left] || Math.floor(target / coins[right]) > maxCoins) return false;
+    if (target % coins[right] === 0) return true;
+    if (left === right) return false;
+    // Loop through possible coin combinations until a valid solution is found.
+   
+    for (let k = Math.floor(target / coins[right]) + 1; k--;) {
+        if (findCombination(coins, left, right - 1, target - k * coins[right], maxCoins - k)) {
+            return true;
+        }
+    }
+    return false;// Return false if no valid combination is found.
+}
+
+
+function gcd(a, b) {
+    while (b !== 0) { // aslong as the gcdVal isn't  0 
+        let temp = b;
+        b = a % b; // set the GcdVal to the remainder of the current Coins' value / GcdVal
+        a = temp;//  the current Coins' value is set to the old GcdVal
+    }
+    return a;// return the new current Coins' value
+}
+ coinChange([1,2,5], 11)
+ /**322. Coin Change
 You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
 
 Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
@@ -133,67 +199,3 @@ FUNCTION gcd(a, b):
 
 
  * */
- var coinChange = function(coins, amount) {
-    fewestCoins = coin[i+1] + coin [i]
-  if (amount = 0)return 0 // checks for 0 coins
-  let n =coins.length //number of coin types
-  if (n === 1){
-   return amount % coins[0] === 0? amount/coins[0]: -1
-  }//checks for one coin
- coins.sort((a,b) => a - b);// sort coins
-  
-
- const minCoin = coins[0];// keep track of coins 
-    if (amount === minCoin) return 1; // checks if the smallest coin  = the amount
-    let idx = 1;// setting an index
-    let gcdVal = minCoin; //greatest common divisor value is set to the smallest coin
-
-    // Loop through coins while the index < the number of coin types AND the amount is >= the current coin’s value.
-   
-    while (idx < n && amount >= coins[idx]) { // as long as the index < the number of coin types AND the amount is >= the current coins' value
-        if (amount === coins[idx]) return 1; // check if the amount is  = to the current coins' value: answer would be 1
-        gcdVal = gcd(coins[idx], gcdVal); // trigger the function Greatest common divisor Setting this to the remainder of coins[idx]/ gcdVal
-        coins[idx] -= minCoin; // subtract the smallest coin form the current coin's value.
-        idx++;//increase the index by one
-    }
-    if (amount % gcdVal !== 0) return -1;
-
-    const minVal = Math.floor((amount - 1) / (coins[idx - 1] + minCoin)) + 1;
-    const maxVal = Math.floor(amount / minCoin); // Upper bound for the number of coins.
-
-    // Loop through possible coin combinations within calculated bounds.
-
-    for (let i = minVal; i <= maxVal; i++) {
-        if (findCombination(coins, 1, idx - 1, amount - i * minCoin, i)) {
-            return i; // Return the minimum number of coins needed.
-
-        }
-    }
-    return -1; // If no valid combination is found, return -1.
-
-};
-
-function findCombination(coins, left, right, target, maxCoins) {
-    if (target === 0) return true;
-    if (target < coins[left] || Math.floor(target / coins[right]) > maxCoins) return false;
-    if (target % coins[right] === 0) return true;
-    if (left === right) return false;
-    // Loop through possible coin combinations until a valid solution is found.
-   
-    for (let k = Math.floor(target / coins[right]) + 1; k--;) {
-        if (findCombination(coins, left, right - 1, target - k * coins[right], maxCoins - k)) {
-            return true;
-        }
-    }
-    return false;// Return false if no valid combination is found.
-}
-
-
-function gcd(a, b) {
-    while (b !== 0) { // aslong as the gcdVal isn't  0 
-        let temp = b;
-        b = a % b; // set the GcdVal to the remainder of the current Coins' value / GcdVal
-        a = temp;//  the current Coins' value is set to the old GcdVal
-    }
-    return a;// return the new current Coins' value
-}
