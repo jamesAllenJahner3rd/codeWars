@@ -15,12 +15,31 @@ Your task is to find the smallest possible length of a (contiguous) subarray of 
  * map to keep degree
  * 
  */
-let map = {}
-for(let i =0;i< nums.length;i++){
-    if (!map[i]) map[i] = 0
-    map[i] ++
-}
-const degree = Math.max(...map.values)
-for ()
-
-
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findShortestSubArray = function (nums) {
+    let map = {}
+    let degree = 0
+    let output = [0, 0, 49999]
+    for (let i = 0; i < nums.length; i++) {
+        if (!map[nums[i]]) {
+            map[nums[i]] = [0]
+        }
+        map[nums[i]][0]++
+        map[nums[i]].push(i)
+        if (map[nums[i]][0] > degree) {
+            degree++
+        }
+    }
+    for (let num in map) {
+        if (map[num][0] >= degree) {
+            degree = map[num][0]
+            if (((map[num][map[num].length - 1]) - map[num][1]+1) < (output[output.length - 1] - output[1]+1)) {
+                output = map[num]
+            }
+        }
+    }
+    return output[output.length - 1] - output[1]+1
+};

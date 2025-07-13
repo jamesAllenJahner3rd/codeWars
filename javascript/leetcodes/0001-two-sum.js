@@ -88,3 +88,26 @@ var twoSum = function (nums, target) {
     });
     return output
 };
+/*parameter number[], target
+ return index of two that sum to the target
+ [2,3,4] 7 3,4
+ [4,3,2] 7  4,3
+ [1,2] 3 1,2
+ sum
+ two number
+ for i for a pointer
+ j for a pointer
+ mem array
+ when target - sum[i] and push that to the array
+ if sum[i+1] is in the array return the two indecies
+ */
+/*var twoSum = function(nums, target) {
+let memo = []
+    for(let i = 0; i <nums.length; i++){
+        if(memo.includes(nums[i])){
+            return [i, memo.indexOf(nums[i])]
+        }
+        memo.push(target - nums[i])
+    }
+};
+*/
