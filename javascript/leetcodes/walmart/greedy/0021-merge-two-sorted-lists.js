@@ -156,3 +156,27 @@ var mergeTwoLists = function(list1, list2) {
     return newNodeRoot.next
 };
 */
+/*var mergeTwoLists = function (list1, list2) {
+    let node = { val: -1, next: null };
+    let iteratorNode = node;     
+    while (list1 !== null && list2 !== null) {
+
+        if (list1.val <= list2.val) {
+            iteratorNode.next = list1
+            list1 = list1.next;
+
+        } else {
+            iteratorNode.next = list2;
+            list2 = list2.next;
+        }
+        iteratorNode = iteratorNode.next
+    }
+    if (list1 !== null) {
+        iteratorNode.next = list1;
+    } else {
+        iteratorNode.next = list2;
+    }
+    // console.log("b list1", list1, list1 !== null, list2 !== null, (list1 !== null && list2 !== null))
+
+    return node.next
+};*/
