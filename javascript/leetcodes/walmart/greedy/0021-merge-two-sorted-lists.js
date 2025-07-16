@@ -110,3 +110,49 @@ var mergeTwoLists = function(list1, list2) {
 
     return dummyNode.next;
 };
+/* [1,2,3,4,5]
+ [1,2,3,4,5] [1,1,2,2,3,3,4,4,5,5]
+ [1]
+ [2,2,3] [1,2,2,3]
+ [6]
+ [-1,2,3] [-1,2,3,6]
+
+ 2 link list
+ function ListNode(val,next){
+    this.val = (val === undefined ? val)
+    this.next = (next === undefined ? null : next)
+ }
+ return 1 link list
+ if node1.val < node2.val 
+    then return node1.val 
+    and  set node1.val = node1.next
+else 
+    return node2.val 
+    and set node2.val = node2.next
+
+finally return to linklist
+ *//*
+var mergeTwoLists = function(list1, list2) {
+    console.log(list1,list2)
+    newNodeList = new ListNode(-1)
+    let newNodeRoot = newNodeList
+    while(list1 !== null && list2 !==null){
+        //console.log("newNodeList",newNodeList,//"newNodeRoot",newNodeRoot         )
+        if (list1.val < list2.val|| list2.val ===null){
+            let temp = list1.val
+            list1 = list1.next
+            newNodeList.val =temp
+
+        } else if (list1.val > list2.val|| list1.val === null){
+            let temp = list2.val
+            list2 = list2.next
+            newNodeList.val =temp
+        }
+        console.log(list1.next,list2.next)
+    //    newNodeList.next =  new ListNode()
+    newNodeList = newNodeList.next
+    console.log(newNodeRoot)
+    }
+    return newNodeRoot.next
+};
+*/
