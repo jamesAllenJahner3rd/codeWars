@@ -76,3 +76,14 @@ var removeElement = function (nums, val) {
     }
     return k
 };
+/*
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ 
+var removeElement = function (nums, val) {
+    let k = 0;
+    nums.forEach(element =&gt; { if (element != val) nums[k++] = element });
+    return k;
+};
+*/ 
