@@ -91,3 +91,71 @@ var longestPalindrome = function (s) {
         }
     } return output
 };
+/****************** */
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ /**
+ param is a string
+ return a string, substring.
+ 1 1
+ 12112 2112 not 121
+  123212321 123212321 not 12321
+  so watch for even  or odd 
+  check for longer ones.
+  start is the middle work our way out
+  watch for duplicates
+    then test the center
+    find the ends */ 
+var longestPalindrome = function(s) {
+    let completed = 0
+    let jitter =0
+    let middle = Math.floor(s.length/2);
+    let start =0
+    let end =0
+    let length =1
+    function tester(m){
+        // console.log(`completed=${completed}, m=${m}, start=${start}, end=${end}, length=${length}, `)    
+        middle = m
+
+        let plus = middle+1;
+        let minus =middle-1;
+        if(s[plus]===s[minus]){
+            // console.log(`s[plus]===s[minus]=${s[plus]===s[minus]} `)  
+             checker(minus,plus)
+
+        }
+        if(s[middle]===s[minus]){
+            // console.log(`s[middle]===s[minus]= ${s[middle]===s[minus]} `) 
+             checker(minus,middle)
+        }
+        if(s[plus]===s[middle]){
+            // console.log(`s[plus]===s[middle]= ${s[plus]===s[middle]} `) 
+            checker(middle,plus)
+        }
+        jitter = jitter >0?(jitter +1)* -1:(jitter -1)* -1
+        completed ++
+        if (completed ===s.length || s.length === length ){
+            // console.log(length%2 === 0,"a",s.slice(start-1,end),"b",s.slice(start,end+1),"c",s.slice(start,end),"start",start,"end",end)
+            return s.slice(start,end+1)
+            // return (start - end)%2 === 0? s.slice(start-1,end):s.slice(start,end+1);
+        }
+        return tester(m+jitter )
+    }
+    function checker(a,b){ 
+        // console.log(`(s[a] === s[b]=${s[a] === s[b]} && s[a]& b= ${ s[a] && s[b]} `)        
+            while(s[a] === s[b]&& s[a]!= undefined && s[b] != undefined){
+                if (length < b-a +1){
+                start = a
+                end = b
+                length =b-a+1
+                }
+                a--
+                b++
+            }
+    }
+    let answer = tester(middle)
+    // console.log (answer)
+    return answer
+    };
