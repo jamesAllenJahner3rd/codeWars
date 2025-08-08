@@ -39,4 +39,48 @@ var threeSum = function(nums) {
     }
 
     return res;
-}
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ array nums
+ i'm returninf an num[][]
+ -return num add to zero, nopt indexs, so we can change the index using sort and alike.
+ -we are finding all the solutions not one. so we have to look at all the numbers can't skip
+ -can't resuse the same group of nums
+ so sort them 
+ use two pointer techhq solves the re using bitlets to skiip incorect dups
+ for each i have pointer i+1  and length -1  move inward till reach 0
+ */
+
+var threeSum = function (nums) {
+
+    let output = []
+    const sorted = nums.sort((a, b) => a - b)
+    lastNum = sorted.length - 1
+
+    for (let i = 0; i < lastNum; i++) {
+        while (sorted[i] === sorted[i - 1 ] ) {i++};
+
+        let left = i + 1;
+        let right = lastNum;
+
+        while (left < right) {
+           
+            let sum = sorted[i] + sorted[left] + sorted[right];
+            if(sum === 0)  {
+                output.push([sorted[i], sorted[left], sorted[right]]);
+            
+                left++; 
+                right--
+            }else{
+                while (sorted[left] === sorted[left + 1 ] && left<right) {left++};
+                while (sorted[right] === sorted[right - 1] && left<right) {right--};
+                if (sum > 0) {right--}
+                if (sum < 0) {left++}
+            }
+        };
+    }
+    return output
+};}
