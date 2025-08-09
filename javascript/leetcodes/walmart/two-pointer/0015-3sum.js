@@ -83,4 +83,60 @@ var threeSum = function (nums) {
         };
     }
     return output
-};}
+};
+}
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ OK so we're taking array of numbers and returning an array of array of numbers
+ We don't want duplicates of the arrays meaning we wanna skip over duplicate numbers
+ And since we're looking for the numbers and month indexes that means we can change the indexes This means we can sort
+ If we can sort that means but we can use two pointer
+ 
+ sort nums
+  loop with i
+   check if nums[i] is the same as  [i-1] or if nums[i] > 0
+    else skip it
+    for each i have two pointers scan between it and the end for a sum of 0*/
+var threeSum = function(nums) {
+    let n = nums.length
+    let sorted = nums.sort((a,b)=> a-b);
+    let output =[];
+    for(let i =0; i<n;i++){
+        if(i > 0){
+            // console.log("a",nums[i-1] === nums[i],nums[i-1], nums[i])
+            if(nums[i-1] === nums[i] ||nums[i]> 0){
+                // console.log("b",nums[i-1] === nums[i])
+                continue
+            }
+        }
+        let left =i+1
+        let right= n-1
+        while (left <right){
+            // console.log(i,nums[i],nums[i-1],left,right)
+            let sum = nums[i]+nums[left]+nums[right]            
+            if(0 === sum){
+                //  console.log("c",nums[i-1] === nums[i])
+                output.push([nums[i],nums[left],nums[right]])
+                left++
+                while(nums[left] === nums[left-1] ){
+                        left++
+                    }
+            }else{
+                if (sum > 0){
+                    right --
+                    while(nums[right] === nums[right+1] ){
+                        right--
+                    }
+                }else{
+                    left++
+                    while(nums[left] === nums[left-1] ){
+                        left++
+                    }
+                }
+            }
+        }
+    }
+    return output
+};
