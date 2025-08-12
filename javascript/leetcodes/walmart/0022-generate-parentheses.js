@@ -81,3 +81,30 @@ var generateParenthesis = function (n) {
     return parethArray
 
 };
+/**
+ * @param {number} n
+ * @return {string[]}
+ take the count of para 2*n
+ n open and n close
+  if more close then fail
+  Back track?
+ */
+var generateParenthesis = function (n) {
+    let close = 0;
+    let open = 0;
+    output = [];
+    function helper(open, close, s) {
+        if (s.length === 2 * n) {
+            output.push(s);
+            return;
+        };
+        if (open < n) {
+            helper(open + 1, close, s + "(");
+        };        
+        if (close < open) {
+            helper(open, close+1, s + ")");
+        };
+    };
+    helper(0, 0, "");
+    return output;
+};
